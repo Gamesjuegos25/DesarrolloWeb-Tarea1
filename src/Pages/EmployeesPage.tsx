@@ -6,6 +6,7 @@ import EmployeeCard from '../components/EmployeeCard';
 import { StatsBadge } from "../components/StatsBadge";
 //error import   { FormField }  from "../components/FormField";
 import  FormField  from "../components/FormField";
+import Modal from "../components/Modal";
 
 function EmployeesPage() {
   // Estado de la lista completa (simulando datos del servidor)
@@ -171,6 +172,13 @@ function EmployeesPage() {
           border: '1px solid #bfdbfe'
         }}>
           <p style={{ margin: '0 0 12px', fontWeight: 600, color: '#1e293b' }}>Nuevo empleado</p>
+      {/* Formulario dentro de un modal */}
+      <Modal
+        isOpen={showForm}
+        onClose={() => setShowForm(false)}
+        title="Nuevo empleado"
+      >
+        <div>
           <div style={{
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
@@ -315,6 +323,7 @@ function EmployeesPage() {
           </div>
         </div>
       )}
+      </Modal>
 
       {/* Barra de filtros */}
       <div style={{
