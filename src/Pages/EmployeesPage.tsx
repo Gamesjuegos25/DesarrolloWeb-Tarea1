@@ -332,16 +332,7 @@ function EmployeesPage() {
             placeholder="Buscar por nombre, email o cargo..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{
-              padding: '8px 12px', 
-              border: '1px solid #cbd5e1',
-              borderRadius: '6px', 
-              fontSize: '14px', 
-              color: '#1e293b', 
-              background: 'white',
-              width: '100%',
-              boxSizing: 'border-box' as const,
-            }}
+            style={formFieldStyle}
           />
         </FormField>
 
@@ -350,16 +341,7 @@ function EmployeesPage() {
           <select
             value={selectedDepartment}
             onChange={(e) => setSelectedDepartment(e.target.value as Department | '')}
-            style={{
-              padding: '8px 12px', 
-              border: '1px solid #cbd5e1',
-              borderRadius: '6px', 
-              fontSize: '14px', 
-              color: '#1e293b', 
-              background: 'white',
-              width: '100%',
-              boxSizing: 'border-box' as const,
-            }}
+            style={formFieldStyle}
           >
             <option value="">Todos los departamentos</option>
             {departments.map(dept => (
@@ -373,16 +355,7 @@ function EmployeesPage() {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value as EmployeeStatus | '')}
-            style={{
-              padding: '8px 12px', 
-              border: '1px solid #cbd5e1',
-              borderRadius: '6px', 
-              fontSize: '14px', 
-              color: '#1e293b', 
-              background: 'white',
-              width: '100%',
-              boxSizing: 'border-box' as const,
-            }}
+            style={formFieldStyle}
           >
             <option value="">Todos los estados</option>
             {statuses.map(status => (
