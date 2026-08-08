@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import type { Employee, Department, EmployeeStatus, EmployeeRole } from '../types';
 import { mockEmployees } from '../utils/mockData';
 import EmployeeCard from '../components/EmployeeCard';
-import { StatsBadge } from "../components/StatsBadge";
+import  StatsBadge from "../components/StatsBadge";
 import FormField from "../components/FormField";
 import Modal from "../components/Modal";
 
@@ -407,3 +407,38 @@ function EmployeesPage() {
           {filteredEmployees.map(employee => (
             <div key={employee.id} style={{ position: 'relative' }}>
               <button
+                onClick={() => handleDeleteEmployee(employee.id)}
+                aria-label="Eliminar empleado"
+                title="Eliminar empleado"
+                style={{
+                  position: 'absolute',
+                  top: '-10px',
+                  right: '-10px',
+                  zIndex: 1,
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: '50%',
+                  border: '2px solid white',
+                  background: '#ef4444',
+                  color: 'white',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.25)'
+                }}
+              >
+                ×
+              </button>
+              <EmployeeCard
+                employee={employee}
+                onSelect={handleSelectEmployee}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default EmployeesPage;
