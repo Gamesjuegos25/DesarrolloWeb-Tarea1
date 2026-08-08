@@ -161,7 +161,7 @@ function EmployeesPage() {
         <StatsBadge label="Empleados en permiso" value={onLeaveEmployees} color="#ca8a04" />
         <StatsBadge label="Empleados inactivos" value={inactiveEmployees} color="#d44444" />
       </div>
-
+/*
       {/* Formulario */}
       {showForm && (
         <div style={{
@@ -172,6 +172,8 @@ function EmployeesPage() {
           border: '1px solid #bfdbfe'
         }}>
           <p style={{ margin: '0 0 12px', fontWeight: 600, color: '#1e293b' }}>Nuevo empleado</p>
+            
+            */
       {/* Formulario dentro de un modal */}
       <Modal
         isOpen={showForm}
@@ -322,7 +324,6 @@ function EmployeesPage() {
             </button>
           </div>
         </div>
-      )}
       </Modal>
 
       {/* Barra de filtros */}
