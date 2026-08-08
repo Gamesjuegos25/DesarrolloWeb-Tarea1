@@ -7,7 +7,7 @@ interface StatsBadgeProps {
   color?: string;
 }
 
-export const StatsBadge: React.FC<StatsBadgeProps> = ({ label, value, color }) => {
+const StatsBadge: React.FC<StatsBadgeProps> = ({ label, value, color }) => {
   return (
     <div
       style={{
@@ -29,3 +29,5 @@ export const StatsBadge: React.FC<StatsBadgeProps> = ({ label, value, color }) =
     </div>
   );
 };
+
+export default StatsBadge;
