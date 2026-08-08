@@ -4,8 +4,7 @@ import type { Employee, Department, EmployeeStatus, EmployeeRole } from '../type
 import { mockEmployees } from '../utils/mockData';
 import EmployeeCard from '../components/EmployeeCard';
 import { StatsBadge } from "../components/StatsBadge";
-//error import   { FormField }  from "../components/FormField";
-import  FormField  from "../components/FormField";
+import FormField from "../components/FormField";
 import Modal from "../components/Modal";
 
 function EmployeesPage() {
@@ -118,12 +117,12 @@ function EmployeesPage() {
 
   // Estilos reutilizables
   const formFieldStyle = {
-    padding: '8px 12px', 
+    padding: '8px 12px',
     border: '1px solid #cbd5e1',
-    borderRadius: '6px', 
-    fontSize: '14px', 
-    color: '#1e293b', 
-    background: 'white', 
+    borderRadius: '6px',
+    fontSize: '14px',
+    color: '#1e293b',
+    background: 'white',
     width: '100%',
     boxSizing: 'border-box' as const,
   };
@@ -141,12 +140,12 @@ function EmployeesPage() {
         <button
           onClick={() => setShowForm(!showForm)}
           style={{
-            padding: '8px 16px', 
-            background: '#1e40af', 
+            padding: '8px 16px',
+            background: '#1e40af',
             color: 'white',
-            border: 'none', 
-            borderRadius: '6px', 
-            cursor: 'pointer', 
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
             fontSize: '14px'
           }}
         >
@@ -162,16 +161,6 @@ function EmployeesPage() {
         <StatsBadge label="Empleados inactivos" value={inactiveEmployees} color="#d44444" />
       </div>
 
-      {/* Formulario */}
-      {showForm && (
-        <div style={{
-          padding: '16px', 
-          marginBottom: '24px',
-          background: 'white', 
-          borderRadius: '8px', 
-          border: '1px solid #bfdbfe'
-        }}>
-          <p style={{ margin: '0 0 12px', fontWeight: 600, color: '#1e293b' }}>Nuevo empleado</p>
       {/* Formulario dentro de un modal */}
       <Modal
         isOpen={showForm}
@@ -180,9 +169,9 @@ function EmployeesPage() {
       >
         <div>
           <div style={{
-            display: 'grid', 
+            display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '12px', 
+            gap: '12px',
             marginBottom: '16px'
           }}>
             <FormField label="Nombre *">
@@ -294,27 +283,27 @@ function EmployeesPage() {
           </div>
 
           <div style={{ display: 'flex', gap: '8px' }}>
-            <button 
-              onClick={handleAddEmployee} 
+            <button
+              onClick={handleAddEmployee}
               style={{
-                padding: '8px 16px', 
-                background: '#16a34a', 
+                padding: '8px 16px',
+                background: '#16a34a',
                 color: 'white',
-                border: 'none', 
-                borderRadius: '6px', 
+                border: 'none',
+                borderRadius: '6px',
                 cursor: 'pointer'
               }}
             >
               Guardar
             </button>
-            <button 
-              onClick={() => setShowForm(false)} 
+            <button
+              onClick={() => setShowForm(false)}
               style={{
-                padding: '8px 16px', 
-                background: '#e2e8f0', 
+                padding: '8px 16px',
+                background: '#e2e8f0',
                 color: '#475569',
-                border: 'none', 
-                borderRadius: '6px', 
+                border: 'none',
+                borderRadius: '6px',
                 cursor: 'pointer'
               }}
             >
@@ -322,18 +311,17 @@ function EmployeesPage() {
             </button>
           </div>
         </div>
-      )}
       </Modal>
 
       {/* Barra de filtros */}
       <div style={{
-        display: 'flex', 
-        gap: '16px', 
-        flexWrap: 'wrap', 
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
         alignItems: 'flex-end',
-        marginBottom: '24px', 
+        marginBottom: '24px',
         padding: '16px',
-        background: 'white', 
+        background: 'white',
         borderRadius: '8px',
         border: '1px solid #e2e8f0'
       }}>
@@ -379,18 +367,18 @@ function EmployeesPage() {
         {/* Botón limpiar filtros */}
         {(search || selectedDepartment || selectedStatus) && (
           <button
-            onClick={() => { 
-              setSearch(''); 
-              setSelectedDepartment(''); 
-              setSelectedStatus(''); 
+            onClick={() => {
+              setSearch('');
+              setSelectedDepartment('');
+              setSelectedStatus('');
             }}
             style={{
-              padding: '8px 12px', 
-              background: '#fee2e2', 
+              padding: '8px 12px',
+              background: '#fee2e2',
               color: '#dc2626',
-              border: 'none', 
-              borderRadius: '6px', 
-              cursor: 'pointer', 
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
               fontSize: '14px'
             }}
           >
@@ -423,18 +411,18 @@ function EmployeesPage() {
                 aria-label="Eliminar empleado"
                 title="Eliminar empleado"
                 style={{
-                  position: 'absolute', 
-                  top: '-10px', 
-                  right: '-10px', 
+                  position: 'absolute',
+                  top: '-10px',
+                  right: '-10px',
                   zIndex: 1,
-                  width: '24px', 
-                  height: '24px', 
+                  width: '24px',
+                  height: '24px',
                   borderRadius: '50%',
-                  border: '2px solid white', 
-                  background: '#ef4444', 
+                  border: '2px solid white',
+                  background: '#ef4444',
                   color: 'white',
-                  cursor: 'pointer', 
-                  fontSize: '14px', 
+                  cursor: 'pointer',
+                  fontSize: '14px',
                   lineHeight: '20px',
                   boxShadow: '0 1px 3px rgba(0,0,0,0.25)'
                 }}

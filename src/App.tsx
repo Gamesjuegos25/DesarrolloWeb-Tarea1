@@ -1,11 +1,10 @@
 // src/App.tsx
 import type { ReactNode } from 'react';
-import { BrowserRouter, Routes, Route, Navigate,Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom';
 import Header from './layouts/Header';
-import LoginPage from './Pages/LoginPage';
-
-import DashboardPage from './Pages/DashboardPage';
-import EmployeesPage from './Pages/EmployeesPage';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+import EmployeesPage from './pages/EmployeesPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import type { User } from './types';
 
@@ -36,32 +35,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Ruta pública */}
         <Route path="/login" element={<LoginPage />} />
 
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <AppLayout>
-                <DashboardPage />
-              </AppLayout>
-            </ProtectedRoute>
-          }
-        />
+        {/* Rutas protegidas */}
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <AppLayout>
+              <DashboardPage />
+            </AppLayout>
+          </ProtectedRoute>
+        } />
 
-        <Route
-          path="/empleados"
-          element={
-            <ProtectedRoute>
-              <AppLayout>
-                <EmployeesPage />
-              </AppLayout>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
         <Route path="/empleados" element={
           <ProtectedRoute>
             <AppLayout>
@@ -86,5 +71,3 @@ function App() {
 }
 
 export default App;
-
- 

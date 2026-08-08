@@ -14,32 +14,31 @@ function DashboardPage() {
   ];
 
   return (
-  <div style={{ padding: '24px' }}>
-    <h2 style={{ color: '#1e293b', marginBottom: '24px' }}>Dashboard</h2>
+    <div style={{ padding: '24px' }}>
+      <h2 style={{ color: '#1e293b', marginBottom: '24px' }}>Dashboard</h2>
 
-    <div style={{ display: 'flex', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
-      {stats.map(stat => (
-        <div key={stat.label} style={{
-          background: stat.color, padding: '24px', borderRadius: '12px',
-          minWidth: '160px', flex: 1
-        }}>
-          <p style={{ margin: '0 0 4px', color: stat.textColor, fontSize: '14px' }}>{stat.label}</p>
-          <p style={{ margin: 0, fontSize: '36px', fontWeight: 700, color: stat.textColor }}>{stat.value}</p>
-        </div>
-      ))}
-    </div>
+      <div style={{ display: 'flex', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
+        {stats.map(stat => (
+          <div key={stat.label} style={{
+            background: stat.color, padding: '24px', borderRadius: '12px',
+            minWidth: '160px', flex: 1
+          }}>
+            <p style={{ margin: '0 0 4px', color: stat.textColor, fontSize: '14px' }}>{stat.label}</p>
+            <p style={{ margin: 0, fontSize: '36px', fontWeight: 700, color: stat.textColor }}>{stat.value}</p>
+          </div>
+        ))}
+      </div>
 
-    <div style={{ display: 'flex', gap: '12px' }}>
+      <div style={{ display: 'flex', gap: '12px' }}>
         <Link to="/empleados" style={{
-            padding: '10px 20px', background: '#1e40af', color: 'white',
-            borderRadius: '6px', textDecoration: 'none', fontSize: '14px'
+          padding: '10px 20px', background: '#1e40af', color: 'white',
+          borderRadius: '6px', textDecoration: 'none', fontSize: '14px'
         }}>
-            Ver empleados →
+          Ver empleados →
         </Link>
-        </div>
+      </div>
     </div>
-    );
-    }
+  );
+}
 
-    export default DashboardPage;
-    
+export default DashboardPage;

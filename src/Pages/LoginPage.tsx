@@ -28,25 +28,14 @@ function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: '#f8fafc',
-      }}
-    >
-      <div
-        style={{
-          background: 'white',
-          padding: '40px',
-          borderRadius: '12px',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-          width: '100%',
-          maxWidth: '400px',
-        }}
-      >
+    <div style={{
+      minHeight: '100vh', display: 'flex', alignItems: 'center',
+      justifyContent: 'center', background: '#f8fafc'
+    }}>
+      <div style={{
+        background: 'white', padding: '40px', borderRadius: '12px',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.08)', width: '100%', maxWidth: '400px'
+      }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <span style={{ fontSize: '48px' }}>👥</span>
           <h1 style={{ margin: '8px 0 4px', color: '#1e293b' }}>Mini RRHH</h1>
@@ -55,14 +44,7 @@ function LoginPage() {
 
         <form onSubmit={handleLogin}>
           <div style={{ marginBottom: '16px' }}>
-            <label
-              style={{
-                display: 'block',
-                marginBottom: '4px',
-                fontSize: '14px',
-                fontWeight: 500,
-              }}
-            >
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
               Correo electrónico
             </label>
             <input
@@ -72,25 +54,14 @@ function LoginPage() {
               placeholder="admin@empresa.com"
               required
               style={{
-                width: '100%',
-                padding: '10px 12px',
-                border: '1px solid #e2e8f0',
-                borderRadius: '6px',
-                fontSize: '14px',
-                boxSizing: 'border-box',
+                width: '100%', padding: '10px 12px', border: '1px solid #e2e8f0',
+                borderRadius: '6px', fontSize: '14px', boxSizing: 'border-box'
               }}
             />
           </div>
 
           <div style={{ marginBottom: '24px' }}>
-            <label
-              style={{
-                display: 'block',
-                marginBottom: '4px',
-                fontSize: '14px',
-                fontWeight: 500,
-              }}
-            >
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
               Contraseña
             </label>
             <input
@@ -100,38 +71,35 @@ function LoginPage() {
               placeholder="••••••••"
               required
               style={{
-                width: '100%',
-                padding: '10px 12px',
-                border: '1px solid #e2e8f0',
-                borderRadius: '6px',
-                fontSize: '14px',
-                boxSizing: 'border-box',
+                width: '100%', padding: '10px 12px', border: '1px solid #e2e8f0',
+                borderRadius: '6px', fontSize: '14px', boxSizing: 'border-box'
               }}
             />
           </div>
 
-         {error && (
-        <div style={{
-          background: '#fee2e2', color: '#dc2626', padding: '10px 12px',
-          borderRadius: '6px', marginBottom: '16px', fontSize: '13px'
-        }}>
-          {error}
-        </div>
-      )}
+          {error && (
+            <div style={{
+              background: '#fee2e2', color: '#dc2626', padding: '10px 12px',
+              borderRadius: '6px', marginBottom: '16px', fontSize: '13px'
+            }}>
+              {error}
+            </div>
+          )}
 
-      <button
-        type="submit"
-        style={{
-          width: '100%', padding: '12px', background: '#1e40af', color: 'white',
-          border: 'none', borderRadius: '6px', cursor: 'pointer',
-          fontSize: '15px', fontWeight: 600
-        }}
-      >
-        Iniciar sesión
-      </button>
-      </form>
-      <p style={{ marginTop: '16px', fontSize: '13px', color: '#64748b', textAlign: 'center' }}>
-        Demo: admin@empresa.com / admin123 
+          <button
+            type="submit"
+            style={{
+              width: '100%', padding: '12px', background: '#1e40af', color: 'white',
+              border: 'none', borderRadius: '6px', cursor: 'pointer',
+              fontSize: '15px', fontWeight: 600
+            }}
+          >
+            Iniciar sesión
+          </button>
+        </form>
+
+        <p style={{ marginTop: '16px', fontSize: '12px', color: '#94a3b8', textAlign: 'center' }}>
+          Demo: admin@empresa.com / admin123
         </p>
       </div>
     </div>
