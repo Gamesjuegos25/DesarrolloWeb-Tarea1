@@ -7,33 +7,36 @@ function DashboardPage() {
   const active = mockEmployees.filter(e => e.status === 'active').length;
   const onLeave = mockEmployees.filter(e => e.status === 'on_leave').length;
 
+  const userName = localStorage.getItem('userName') || 'Usuario';
+
   const stats = [
-    { label: 'Total empleados', value: total, color: '#dbeafe', textColor: '#1e40af' },
-    { label: 'Activos', value: active, color: '#dcfce7', textColor: '#166534' },
-    { label: 'En permiso', value: onLeave, color: '#fef9c3', textColor: '#854d0e' },
+    { label: 'Total empleados', value: total, bg: 'bg-blue-100', text: 'text-blue-800' },
+    { label: 'Activos', value: active, bg: 'bg-green-100', text: 'text-green-800' },
+    { label: 'En permiso', value: onLeave, bg: 'bg-yellow-100', text: 'text-yellow-800' },
   ];
 
   return (
-    <div style={{ padding: '24px' }}>
-      <h2 style={{ color: '#1e293b', marginBottom: '24px' }}>Dashboard</h2>
+    <div className="p-6">
+      <h2 className="text-slate-800 mb-1 text-2xl font-semibold">Dashboard</h2>
+      <p className="text-slate-500 mb-6">Bienvenido, <strong>{userName}</strong></p>
 
-      <div style={{ display: 'flex', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
+      <div className="flex flex-col sm:flex-row gap-4 mb-8">
         {stats.map(stat => (
-          <div key={stat.label} style={{
-            background: stat.color, padding: '24px', borderRadius: '12px',
-            minWidth: '160px', flex: 1
-          }}>
-            <p style={{ margin: '0 0 4px', color: stat.textColor, fontSize: '14px' }}>{stat.label}</p>
-            <p style={{ margin: 0, fontSize: '36px', fontWeight: 700, color: stat.textColor }}>{stat.value}</p>
+          <div
+            key={stat.label}
+            className={`${stat.bg} p-6 rounded-xl min-w-[160px] flex-1 hover:shadow-lg transition-shadow duration-200`}
+          >
+            <p className={`m-0 mb-1 ${stat.text} text-sm`}>{stat.label}</p>
+            <p className={`m-0 text-4xl font-bold ${stat.text}`}>{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <div style={{ display: 'flex', gap: '12px' }}>
-        <Link to="/empleados" style={{
-          padding: '10px 20px', background: '#1e40af', color: 'white',
-          borderRadius: '6px', textDecoration: 'none', fontSize: '14px'
-        }}>
+      <div className="flex gap-3">
+        <Link
+          to="/empleados"
+          className="px-5 py-2.5 bg-blue-800 text-white rounded-md no-underline text-sm hover:bg-blue-900 transition-colors duration-200"
+        >
           Ver empleados →
         </Link>
       </div>
