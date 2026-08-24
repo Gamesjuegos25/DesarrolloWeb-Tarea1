@@ -1,33 +1,30 @@
 // src/components/StatsBadge.tsx
-import React from 'react';
-
 interface StatsBadgeProps {
   label: string;
   value: number;
-  color?: string;
+  variant: 'blue' | 'green' | 'yellow' | 'red';
 }
 
-const StatsBadge: React.FC<StatsBadgeProps> = ({ label, value, color }) => {
+const variantStyles: Record<StatsBadgeProps['variant'], string> = {
+  blue: 'border-blue-200 text-blue-700',
+  green: 'border-green-200 text-green-700',
+  yellow: 'border-yellow-200 text-yellow-700',
+  red: 'border-red-200 text-red-700',
+};
+
+function StatsBadge({ label, value, variant }: StatsBadgeProps) {
   return (
     <div
-      style={{
-        border: `2px solid ${color ?? '#e2e8f0'}`,
-        borderRadius: '8px',
-        padding: '16px',
-        minWidth: '180px',
-        textAlign: 'center',
-        backgroundColor: '#fff',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-      }}
+      className={`border-2 rounded-lg p-4 min-w-[180px] text-center bg-white shadow-sm ${variantStyles[variant]}`}
     >
-      <div style={{ fontSize: '24px', fontWeight: 'bold', color: color ?? '#1e293b' }}>
+      <div className="text-2xl font-bold">
         {value}
       </div>
-      <div style={{ fontSize: '16px', color: '#64748b', marginTop: '4px' }}>
+      <div className="text-sm text-slate-500 mt-1">
         {label}
       </div>
     </div>
   );
-};
+}
 
 export default StatsBadge;

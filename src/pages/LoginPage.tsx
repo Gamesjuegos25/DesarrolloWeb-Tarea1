@@ -1,106 +1,81 @@
 // src/pages/LoginPage.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store/authStore';
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { login, isLoading, error, isAuthenticated, clearError } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Simulación de login (en clase 9 conectaremos JWT real)
-    if (email === 'admin@empresa.com' && password === 'admin123') {
-      localStorage.setItem('token', 'mock-token-admin');
-      localStorage.setItem('userRole', 'admin');
-      localStorage.setItem('userName', 'Roberto Silva');
-      navigate('/dashboard');
-    } else if (email === 'rrhh@empresa.com' && password === 'rrhh123') {
-      localStorage.setItem('token', 'mock-token-hr');
-      localStorage.setItem('userRole', 'hr');
-      localStorage.setItem('userName', 'Carlos Martinez');
-      navigate('/dashboard');
-    } else {
-      setError('Credenciales incorrectas. Prueba: admin@empresa.com / admin123');
+  // Si ya está autenticado, redirigir al dashboard
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
     }
+  }, [isAuthenticated, navigate]);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    clearError();
+    await login({ email, password });
+    // La redirección la maneja el useEffect de arriba
   };
 
   return (
-    <div style={{
-      minHeight: '100vh', display: 'flex', alignItems: 'center',
-      justifyContent: 'center', background: '#f8fafc'
-    }}>
-      <div style={{
-        background: 'white', padding: '40px', borderRadius: '12px',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.08)', width: '100%', maxWidth: '400px'
-      }}>
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <span style={{ fontSize: '48px' }}>👥</span>
-          <h1 style={{ margin: '8px 0 4px', color: '#1e293b' }}>Mini RRHH</h1>
-          <p style={{ margin: 0, color: '#64748b' }}>Inicia sesión para continuar</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
+        <div className="text-center mb-8">
+          <span className="text-5xl block mb-3">🔐</span>
+          <h1 className="text-2xl font-bold text-slate-900">Mini RRHH</h1>
+          <p className="text-slate-500 mt-1">Inicia sesión para continuar</p>
         </div>
 
-        <form onSubmit={handleLogin}>
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Correo electrónico
             </label>
             <input
-              type="email"
-              value={email}
+              type="email" value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@empresa.com"
-              required
-              style={{
-                width: '100%', padding: '10px 12px', border: '1px solid #e2e8f0',
-                borderRadius: '6px', fontSize: '14px', boxSizing: 'border-box'
-              }}
+              required disabled={isLoading}
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-slate-50"
             />
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Contraseña
             </label>
             <input
-              type="password"
-              value={password}
+              type="password" value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              style={{
-                width: '100%', padding: '10px 12px', border: '1px solid #e2e8f0',
-                borderRadius: '6px', fontSize: '14px', boxSizing: 'border-box'
-              }}
+              placeholder="••••••••" required disabled={isLoading}
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-slate-50"
             />
           </div>
 
           {error && (
-            <div style={{
-              background: '#fee2e2', color: '#dc2626', padding: '10px 12px',
-              borderRadius: '6px', marginBottom: '16px', fontSize: '13px'
-            }}>
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
               {error}
             </div>
           )}
 
           <button
-            type="submit"
-            style={{
-              width: '100%', padding: '12px', background: '#1e40af', color: 'white',
-              border: 'none', borderRadius: '6px', cursor: 'pointer',
-              fontSize: '15px', fontWeight: 600
-            }}
+            type="submit" disabled={isLoading}
+            className="w-full py-3 bg-brand-800 hover:bg-brand-700 disabled:bg-brand-800/50 text-white font-semibold rounded-lg transition-colors"
           >
-            Iniciar sesión
+            {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
           </button>
         </form>
 
-        <p style={{ marginTop: '16px', fontSize: '12px', color: '#94a3b8', textAlign: 'center' }}>
-          Demo: admin@empresa.com / admin123
-        </p>
+        <div className="mt-4 text-xs text-slate-400 text-center">
+          <p>Demo emails: admin@empresa.com | rrhh@empresa.com | empleado@empresa.com</p>
+          <p className="mt-1">Contraseña para todos: <strong>123456</strong></p>
+        </div>
       </div>
     </div>
   );
