@@ -32,7 +32,7 @@ ${onSelect ? "cursor-pointer" : ""}
 `}
     >
       <div className="flex items-center gap-3">
-        ×
+        
         <div
           className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden text-blue-700 font-semibold 
 text-lg flex-shrink-0"

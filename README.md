@@ -2,6 +2,24 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Desarrollo local
+
+Instala las dependencias y levanta la aplicacion y la API mock en terminales separadas:
+
+```bash
+npm install
+npm run mock-api
+npm run dev
+```
+
+La API queda disponible en `http://localhost:3001`. Puedes cambiarla con `VITE_API_URL` usando `.env.local`.
+
+## Despliegue en Render
+
+Para un Static Site usa `npm run build` como build command y `dist` como publish directory. Define `VITE_API_URL` con la URL publica de tu API.
+
+No uses `http://localhost:3001` en Render. JSON Server es solo para desarrollo local; en produccion debes apuntar `VITE_API_URL` a una API accesible publicamente.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)

@@ -51,14 +51,12 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path="/empleados/:id" element={
-        <ProtectedRoute>
-          <AppLayout>
-            <EmployeeDetailPage />
-          </AppLayout>
-        </ProtectedRoute>
-      } />
-        
-        
+          <ProtectedRoute>
+            <AppLayout>
+              <EmployeeDetailPage />
+            </AppLayout>
+          </ProtectedRoute>
+        } />
 
         {/* Redirigir raíz según autenticación */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />

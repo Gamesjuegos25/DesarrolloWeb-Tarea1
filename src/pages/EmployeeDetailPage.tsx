@@ -1,5 +1,5 @@
 // src/pages/EmployeeDetailPage.tsx
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEmployee } from '../hooks/useEmployees';
 
 const statusLabels: Record<string, string> = {
@@ -16,19 +16,18 @@ const roleLabels: Record<string, string> = {
 
 function EmployeeDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const employeeId = id ? Number(id) : null;
 
   const { data: employee, isLoading, isError, error } = useEmployee(employeeId);
 
   return (
     <div className="p-6 max-w-2xl mx-auto">
-      <button
-        onClick={() => navigate('/empleados')}
-        className="mb-6 flex items-center gap-2 text-blue-800 hover:text-blue-900 text-sm font-medium"
+      <Link
+        to="/empleados"
+        className="mb-6 inline-flex items-center gap-2 rounded-lg bg-blue-800 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-900"
       >
         ← Volver a empleados
-      </button>
+      </Link>
 
       {isLoading && (
         <div className="flex items-center justify-center py-16 text-slate-400">
