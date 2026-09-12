@@ -5,6 +5,7 @@ import { useEmployees, useCreateEmployee, useUpdateEmployee, useDeleteEmployee }
 import EmployeeCard from '../components/EmployeeCard';
 import StatsBadge from '../components/StatsBadge';
 import FormField from '../components/FormField';
+import { useNavigate } from 'react-router-dom';
 
 const formFieldClass = 'w-full px-3 wpy-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent';
 
