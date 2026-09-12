@@ -5,11 +5,12 @@ interface FormFieldProps {
   label: string;
   children: ReactNode;
   style?: CSSProperties;
+  className?: string;
 }
 
-function FormField({ label, children, style }: FormFieldProps) {
+function FormField({ label, children, style, className }: FormFieldProps) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', ...style }}>
+    <div className={className} style={{ display: 'flex', flexDirection: 'column', gap: '4px', ...style }}>
       <label style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>
         {label}
       </label>
