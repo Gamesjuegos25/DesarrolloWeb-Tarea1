@@ -1,57 +1,54 @@
 // src/schemas/employeeSchema.ts
 import { z } from 'zod';
 
-export const employeeSchema = z.object ({
-name: z
-.string ( { error: 'El nombre es requerido' })
-.min (2, 'Minimo 2 caracteres')
-.max (100, 'Maximo 100 caracteres'),
+export const employeeSchema = z.object({
+  name: z
+    .string({ error: 'El nombre es requerido' })
+    .min(2, 'Minimo 2 caracteres')
+    .max(100, 'Maximo 100 caracteres'),
 
-email: z
-.string ( { error: 'El email es requerido' })
-.email ('Formato de email inválido'),
+  email: z
+    .string({ error: 'El email es requerido' })
+    .email('Formato de email inválido'),
 
-position: z
-.string ( { error: 'El cargo es requerido' })
-.min (2, 'Minimo 2 caracteres'),
+  position: z
+    .string({ error: 'El cargo es requerido' })
+    .min(2, 'Minimo 2 caracteres'),
 
-department: z.enum(
-['Tecnologia', 'Recursos Humanos', 'Finanzas', 'Operaciones', 'Ventas'],
-{ error: 'Selecciona un departamento' }
-),
-salary: z.coerce
-. number ( { error: 'El salario es requerido' })
-.min (1, 'El salario debe ser mayor a 0')
-.max (999999, 'Salario fuera de rango'),
+  department: z.enum(
+    ['Tecnologia', 'Recursos Humanos', 'Finanzas', 'Operaciones', 'Ventas'],
+    { error: 'Selecciona un departamento' }
+  ),
 
-hireDate: z
-.string ( { error: 'La fecha de ingreso es requerida' })
-.regex (/^d{4}-d{2}-d{2}$/, 'Formato inválido (YYYY-MM-DD) '),
+  salary: z.coerce
+    .number({ error: 'El salario es requerido' })
+    .min(1, 'El salario debe ser mayor a 0')
+    .max(999999, 'Salario fuera de rango'),
 
-role: z.enum(['admin', 'hr', 'employee' ] ) .default ('employee') ,
+  hireDate: z
+    .string({ error: 'La fecha de ingreso es requerida' })
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato inválido (YYYY-MM-DD)'),
 
-status: z.enum(['active', 'inactive', 'on_leave' ] ) .default ('active'),
+  role: z.enum(['admin', 'hr', 'employee']).default('employee'),
 
-phone: z
-.string ()
-.regex (/^\+? [d\s\-()] {7,15} $/, 'Formato de teléfono inválido')
-.optional ()
-.or (z. literal ( ' ' ) ) ,
+  status: z.enum(['active', 'inactive', 'on_leave']).default('active'),
 
-avatarUrl: z
-.string ()
-.url ('URL inválida')
-.optional ()
-.or (z. literal (' ' ) ),
+  phone: z
+    .string()
+    .regex(/^\+?[\d\s\-()]{7,15}$/, 'Formato de teléfono inválido')
+    .optional()
+    .or(z.literal('')),
 
+  avatarUrl: z
+    .string()
+    .url('URL inválida')
+    .optional()
+    .or(z.literal('')),
 });
 
 export type EmployeeFormData = z.infer<typeof employeeSchema>;
 
-// Tipo de ENTRADA del schema (antes de que Zod corra z.coerce y los .default ()) -
+// Tipo de ENTRADA del schema (antes de que Zod corra z.coerce y los .default()) -
 // react-hook-form necesita este tipo para el formulario en sí, distinto del tipo
 // de SALIDA (EmployeeFormData) que recibe onSubmit una vez que el resolver ya validó.
 export type EmployeeFormInput = z.input<typeof employeeSchema>;
-
-
-
