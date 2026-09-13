@@ -228,7 +228,7 @@ function EmployeeForm({ employee, onSubmit, onCancel, isLoading = false, error }
         <button
           type="submit"
           disabled={isLoading || (!isDirty && isEditing)}
-          className="px-4 py-2 text-sm font-medium text-white bg-brand-800 hover:bg-brand-700 rounded-lg transition-colors disabled:opacity-50 min-w-24"
+          className="px-4 py-2 text-sm font-medium text-black bg-brand-800 hover:bg-brand-700 rounded-lg transition-colors disabled:opacity-50 min-w-24"
         >
           {isLoading
             ? 'Guardando...'
