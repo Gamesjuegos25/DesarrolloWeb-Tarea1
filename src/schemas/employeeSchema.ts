@@ -26,7 +26,7 @@ salary: z.coerce
 
 hireDate: z
 .string ( { error: 'La fecha de ingreso es requerida' })
-.regex (/^d{4}-d{2}-d{2}$/, 'Formato inválido (YYYY-MM-DD) '),
+.regex (/^\d{4}-\d{2}-\d{2}$/, 'Formato inválido (YYYY-MM-DD)'),
 
 role: z.enum(['admin', 'hr', 'employee' ] ) .default ('employee') ,
 
@@ -34,15 +34,15 @@ status: z.enum(['active', 'inactive', 'on_leave' ] ) .default ('active'),
 
 phone: z
 .string ()
-.regex (/^\+? [d\s\-()] {7,15} $/, 'Formato de teléfono inválido')
+.regex (/^\+?[\d\s\-()]{7,15}$/, 'Formato de teléfono inválido')
 .optional ()
-.or (z. literal ( ' ' ) ) ,
+.or (z. literal ( '' ) ) ,
 
 avatarUrl: z
 .string ()
 .url ('URL inválida')
 .optional ()
-.or (z. literal (' ' ) ),
+.or (z. literal ('' ) ),
 
 });
 
@@ -52,6 +52,3 @@ export type EmployeeFormData = z.infer<typeof employeeSchema>;
 // react-hook-form necesita este tipo para el formulario en sí, distinto del tipo
 // de SALIDA (EmployeeFormData) que recibe onSubmit una vez que el resolver ya validó.
 export type EmployeeFormInput = z.input<typeof employeeSchema>;
-
-
-

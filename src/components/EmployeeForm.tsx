@@ -144,7 +144,7 @@ function EmployeeForm({ employee, onSubmit, onCancel, isLoading = false, error }
             aria-required="true"
           >
             <option value="">Selecciona...</option>
-            {['Tecnología', 'Recursos Humanos', 'Finanzas', 'Operaciones', 'Ventas'].map(d => (
+            {['Tecnologia', 'Recursos Humanos', 'Finanzas', 'Operaciones', 'Ventas'].map(d => (
               <option key={d} value={d}>{d}</option>
             ))}
           </select>
