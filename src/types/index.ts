@@ -13,6 +13,8 @@ export type Department =
     
     export type EmployeeStatus = "active" | "inactive" | "on_leave";
 
+    export type SucursalesStatus = "active"|"inactive";
+
 
     //tipos de authenticacion
 
@@ -29,11 +31,31 @@ export type Department =
     avatarUrl?: string;
     phone?: string;
     }
+//SUCURSALES
+
+     export interface Sucursal {
+    id: number;
+    name: string;
+    address: string;
+    encargado: string;
+    telefono?: string;
+    cantidad_empleados: number;
+    estado: SucursalesStatus; 
+   
+    }
+
 
     // --- Tipos para creación y actualización ---
  
     export type CreateEmployeeDto = Omit<Employee, "id">;
     export type UpdateEmployeeDto = Partial<CreateEmployeeDto>;
+    
+
+      //SUCURSALES
+    export type CreateSucursalDto = Omit<Sucursal, "id">;
+    export type UpdateSucursalDto = Partial<CreateSucursalDto>;
+   export type SucursalesDTO = Omit<Sucursal, "id">;
+    
     
     // --- Tipos de autenticación ---
     

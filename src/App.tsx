@@ -5,6 +5,7 @@ import Header from './layouts/Header';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import EmployeesPage from './pages/EmployeesPage';
+import SucursalesPage from './pages/SucursalesPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuthStore } from './store/authStore';
 import EmployeeDetailPage from './pages/EmployeeDetailPage';
@@ -58,6 +59,14 @@ function App() {
           </ProtectedRoute>
         } />
 
+        <Route path="/sucursales" element={
+          <ProtectedRoute>
+            <AppLayout>
+              <SucursalesPage />
+            </AppLayout>
+          </ProtectedRoute>
+        } />
+      
         {/* Redirigir raíz según autenticación */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
 

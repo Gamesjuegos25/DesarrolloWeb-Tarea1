@@ -232,5 +232,34 @@
       "status": "on_leave",
       "role": "employee"
     }
+  ],
+  "sucursales": [
+    {
+      "id": 1,
+      "name": "Sucursal A",
+      "address": "Calle de entrada",
+      "encargado": "Juan Perez",
+      "telefono": "25255555",
+      "catnidad_empleados": 500,
+      "estado": "active"
+    },
+    {
+      "name": "Sucur b",
+      "address": "dsad",
+      "encargado": "dsadasdsadasdasdsadasdasd",
+      "cantidad_empleados": 1,
+      "estado": "inactive",
+      "telefono": "",
+      "id": 2
+    },
+    {
+      "name": "Sucursal C",
+      "address": "AV de salida",
+      "encargado": "Bruno Dominguez",
+      "cantidad_empleados": 100,
+      "estado": "active",
+      "telefono": "54565852",
+      "id": 3
+    }
   ]
 }

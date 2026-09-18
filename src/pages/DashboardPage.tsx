@@ -41,6 +41,9 @@ function DashboardPage() {
         <Link to="/empleados" className="px-5 py-2.5 bg-blue-800 text-white rounded-md no-underline text-sm hover:bg-blue-900 transition-colors duration-200">
           Ver empleados →
         </Link>
+         <Link to="/sucursales" className="px-5 py-2.5 bg-blue-800 text-white rounded-md no-underline text-sm hover:bg-blue-900 transition-colors duration-200">
+          Ver sucursales →
+        </Link>
       </div>
     </div>
   );
