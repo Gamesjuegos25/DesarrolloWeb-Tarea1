@@ -8,6 +8,8 @@ import Modal from '../components/Modal';
 import EmployeeForm from '../components/EmployeeForm';
 import { useEmployees, useCreateEmployee, useUpdateEmployee, useDeleteEmployee } from '../hooks/useEmployees';
 import type { EmployeeFormData } from '../schemas/employeeSchema';
+import { useHasRole } from '../hooks/useHasRole';
+import { extractErrorMessage } from '../utils/errorHandler';
 
 const formFieldClass = 'w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent';
 
@@ -19,6 +21,10 @@ const nextStatus: Record<EmployeeStatus, EmployeeStatus> = {
 };
 
 function EmployeesPage() {
+  // La página ya está restringida por RoleGuard a ADMIN/HR_MANAGER (App.tsx).
+  // Eliminar empleados es exclusivo de ADMIN, por eso la acción se oculta según el rol.
+  const canDeleteEmployees = useHasRole(['ADMIN']);
+
   // Estado de los filtros — esto sigue siendo estado LOCAL (de la UI), no del servidor
   const [search, setSearch] = useState<string>('');
   const [selectedDepartment, setSelectedDepartment] = useState<Department | ''>('');
@@ -26,7 +32,7 @@ function EmployeesPage() {
 
   // Estado del SERVIDOR: la lista de empleados, filtrada. TanStack Query se encarga
   // de pedirla, cachearla y mantenerla sincronizada — no hay useEffect ni useState local.
-  const { data, isLoading: loading, isError, error: queryError } = useEmployees({
+  const { data, isLoading: loading, isError, error: queryError, refetch, isFetching } = useEmployees({
     search: search || undefined,
     department: selectedDepartment || undefined,
     status: selectedStatus || undefined,
@@ -114,7 +120,7 @@ function EmployeesPage() {
         </div>
         <button
           onClick={handleOpenCreate}
-          className="px-4 py-2 bg-brand-800 hover:bg-brand-700 text-black rounded-lg text-sm font-medium transition-colors"
+          className="px-4 py-2 bg-brand-800 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors"
         >
           + Nuevo empleado
         </button>
@@ -193,8 +199,15 @@ function EmployeesPage() {
         <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
           <p className="text-red-700 font-medium">Error al cargar los empleados</p>
           <p className="text-red-500 text-sm mt-1">
-            {(queryError as Error)?.message || 'Error desconocido'}
+            {extractErrorMessage(queryError)}
           </p>
+          <button
+            onClick={() => refetch()}
+            disabled={isFetching}
+            className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 disabled:opacity-60 text-white rounded-lg text-sm font-medium transition-colors"
+          >
+            {isFetching ? 'Reintentando...' : 'Reintentar'}
+          </button>
         </div>
       )}
 
@@ -219,14 +232,16 @@ function EmployeesPage() {
                 >
                   ✎
                 </button>
-                <button
-                  onClick={() => handleDeleteEmployee(employee.id)}
-                  aria-label="Eliminar empleado"
-                  title="Eliminar empleado"
-                  className="w-6 h-6 rounded-full border-2 border-white bg-red-500 text-white cursor-pointer text-sm leading-5 shadow-md"
-                >
-                  ×
-                </button>
+                {canDeleteEmployees && (
+                  <button
+                    onClick={() => handleDeleteEmployee(employee.id)}
+                    aria-label="Eliminar empleado"
+                    title="Eliminar empleado"
+                    className="w-6 h-6 rounded-full border-2 border-white bg-red-500 text-white cursor-pointer text-sm leading-5 shadow-md"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
               <EmployeeCard
                 employee={employee}

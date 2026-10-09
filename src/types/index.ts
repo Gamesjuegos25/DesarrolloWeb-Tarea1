@@ -35,16 +35,28 @@ export type Department =
     export type CreateEmployeeDto = Omit<Employee, "id">;
     export type UpdateEmployeeDto = Partial<CreateEmployeeDto>;
     
-    // --- Tipos de autenticación ---
-    
-    export interface User {
-    id: number;
+    // --- Tipos de autenticación (JWT contra API-RH) ---
+
+    // Roles que emite API-RH (distintos del EmployeeRole, que es un campo
+    // del empleado en la API local).
+    export type AuthRole = "ADMIN" | "HR_MANAGER" | "EMPLOYEE";
+
+    export interface AuthUserRole {
+    code: AuthRole;
     name: string;
-    email: string;
-    role: EmployeeRole;
-    token: string;
     }
-    
+
+    export interface AuthUser {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    isActive: boolean;
+    role: AuthUserRole;
+    accessToken: string;
+    refreshToken: string;
+    }
+
     export interface LoginCredentials {
     email: string;
     password: string;
@@ -72,5 +84,5 @@ export type Department =
     label: string;
     path: string;
     icon: string;
-    allowedRoles: EmployeeRole[];
+    allowedRoles: AuthRole[];
     }
