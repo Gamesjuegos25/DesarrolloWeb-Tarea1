@@ -1,6 +1,10 @@
-# React + TypeScript + Vite
+# Mini RRHH — Desarrollo Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Sitio desplegado:** https://desarrolloweb-tarea1.onrender.com
+
+Aplicacion de gestion de empleados con React + TypeScript + Vite. Incluye autenticacion (JWT, refresh y roles), CRUD de empleados con TanStack Query, formularios con React Hook Form + Zod, manejo centralizado de errores y pagina 404.
+
+**Usuarios de prueba** (contrasena `Demo1234`): `admin@empresa.com` (ADMIN), `rrhh@empresa.com` (HR_MANAGER), `empleado@empresa.com` (EMPLOYEE).
 
 ## Desarrollo local
 
@@ -8,7 +12,7 @@ Instala las dependencias y levanta la aplicacion y la API mock en terminales sep
 
 ```bash
 npm install
-npm run mock-api
+npm run mock-api   # server.js: empleados + /api/v1/auth
 npm run dev
 ```
 
@@ -16,9 +20,9 @@ La API queda disponible en `http://localhost:3001`. Puedes cambiarla con `VITE_A
 
 ## Despliegue en Render
 
-Para un Static Site usa `npm run build` como build command y `dist` como publish directory. Define `VITE_API_URL` con la URL publica de tu API.
+Para un Static Site usa `npm run build` como build command y `dist` como publish directory. Define `VITE_API_URL` con la URL publica de tu API y **no definas** `VITE_AUTH_API_URL`: el login lo atiende el mismo servidor (`server.js`, comando `npm run mock-api`), asi no hay CORS entre servicios.
 
-No uses `http://localhost:3001` en Render. JSON Server es solo para desarrollo local; en produccion debes apuntar `VITE_API_URL` a una API accesible publicamente.
+No uses `http://localhost:3001` en Render; `VITE_API_URL` debe apuntar a la API publica.
 
 Currently, two official plugins are available:
 
