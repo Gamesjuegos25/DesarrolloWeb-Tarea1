@@ -6,7 +6,6 @@ import StatsBadge from '../components/StatsBadge';
 import FormField from '../components/FormField';
 import Modal from '../components/Modal';
 import EmployeeForm from '../components/EmployeeForm';
-import { extractErrorMessage } from '../utils/errorHandler';
 import { useEmployees, useCreateEmployee, useUpdateEmployee, useDeleteEmployee } from '../hooks/useEmployees';
 import type { EmployeeFormData } from '../schemas/employeeSchema';
 import { useHasRole } from '../hooks/useHasRole';
