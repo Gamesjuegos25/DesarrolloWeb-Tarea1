@@ -1,6 +1,7 @@
 // src/pages/EmployeeDetailPage.tsx
 import { Link, useParams } from 'react-router-dom';
 import { useEmployee } from '../hooks/useEmployees';
+import { extractErrorMessage } from '../utils/errorHandler';
 
 const statusLabels: Record<string, string> = {
   active: 'Activo',
@@ -40,7 +41,7 @@ function EmployeeDetailPage() {
         <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
           <p className="text-red-700 font-medium">Error al cargar el empleado</p>
           <p className="text-red-500 text-sm mt-1">
-            {(error as Error)?.message || 'Error desconocido'}
+            {extractErrorMessage(error)}
           </p>
         </div>
       )}
