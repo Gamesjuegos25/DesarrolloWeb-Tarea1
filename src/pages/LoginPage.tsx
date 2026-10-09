@@ -27,7 +27,7 @@ function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <span className="text-5xl block mb-3">🔐</span>
+          <span className="text-5xl block mb-3">👥</span>
           <h1 className="text-2xl font-bold text-slate-900">Mini RRHH</h1>
           <p className="text-slate-500 mt-1">Inicia sesión para continuar</p>
         </div>
@@ -40,7 +40,7 @@ function LoginPage() {
             <input
               type="email" value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@empresa.com"
+              placeholder="tu-usuario@empresa.com"
               required disabled={isLoading}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-slate-50"
             />
@@ -72,9 +72,9 @@ function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-4 text-xs text-slate-400 text-center">
-          <p>Demo emails: admin@empresa.com | rrhh@empresa.com | empleado@empresa.com</p>
-          <p className="mt-1">Contraseña para todos: <strong>123456</strong></p>
+        <div className="mt-6 text-xs text-slate-400 text-center">
+          <p>Usuarios de prueba: admin@empresa.com | rrhh@empresa.com | empleado@empresa.com</p>
+          <p className="mt-1">Contraseña para todos: <strong>Demo1234</strong></p>
         </div>
       </div>
     </div>
