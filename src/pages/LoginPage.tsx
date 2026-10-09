@@ -71,6 +71,11 @@ function LoginPage() {
             {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
           </button>
         </form>
+
+        <div className="mt-6 text-xs text-slate-400 text-center">
+          <p>Usuarios de prueba: admin@empresa.com | rrhh@empresa.com | empleado@empresa.com</p>
+          <p className="mt-1">Contraseña para todos: <strong>Demo1234</strong></p>
+        </div>
       </div>
     </div>
   );

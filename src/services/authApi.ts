@@ -3,8 +3,11 @@ import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 import { notifyGlobalError } from '../utils/errorHandler';
 
-// URL base de API-RH (instancia en Cloud Run), sin /api/v1.
-const AUTH_BASE_URL = import.meta.env.VITE_AUTH_API_URL || '<API_BASE_URL_ASIGNADA>';
+// URL base del servicio de auth, sin /api/v1. Por defecto es el mismo servidor
+// propio (server.js) que sirve los empleados, así no hay CORS entre servicios.
+const AUTH_BASE_URL = import.meta.env.VITE_AUTH_API_URL
+  || import.meta.env.VITE_API_URL
+  || 'http://localhost:3001';
 
 export const authApiClient = axios.create({
   baseURL: AUTH_BASE_URL,
